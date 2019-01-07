@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const port = 3000;
+const port = 3001;
 const app = express();
 const router = express.Router();
 
@@ -33,7 +33,7 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 //get method
 router.get("/items", (req, res) => {
-    Data.find((err, data) => {
+    Item.find((err, data) => {
       if (err) return res.json({ success: false, error: err });
       return res.json({ success: true, data: data });
     });
@@ -48,5 +48,6 @@ router.get("/items", (req, res) => {
     })
   });
 
+app.use("/api", router);
 
 app.listen(port, ()=> console.log('Listening on port ${port}'));
