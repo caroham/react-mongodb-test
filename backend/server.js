@@ -33,6 +33,7 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 //get method
 router.get("/items", (req, res) => {
+  console.log("in server get");
     Item.find((err, data) => {
       if (err) return res.json({ success: false, error: err });
       return res.json({ success: true, data: data });
