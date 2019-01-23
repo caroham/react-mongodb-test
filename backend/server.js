@@ -49,6 +49,15 @@ router.get("/items", (req, res) => {
     })
   });
 
+  //delete method
+  router.delete("/delete", (req, res)=>{
+    const { id } = req.body;
+    Item.findOneAndDelete(id, err =>{
+      if (err) return res.send(err);
+      return res.json({success: true});
+    });
+  });
+
 app.use("/api", router);
 
-app.listen(port, ()=> console.log('Listening on port ${port}'));
+app.listen(port, ()=> console.log(`Listening on port ${port}`));
