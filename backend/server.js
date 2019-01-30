@@ -33,7 +33,7 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 //get method
 router.get("/items", (req, res) => {
-  console.log("in server get");
+  // console.log("in server get");
     Item.find((err, data) => {
       if (err) return res.json({ success: false, error: err });
       return res.json({ success: true, data: data });
@@ -61,7 +61,9 @@ router.get("/items", (req, res) => {
   //update method
   router.post("/update", (req, res) =>{
     const {id, update} = req.body;
+    console.log("in update, req: ", id, update);
     Item.findOneAndUpdate(id, update, err => {
+      console.log("inside find one and update, id: ", id, err);
       if (err) return res.json({success: false, error: err});
       return res.json({sucess: true});
     });
